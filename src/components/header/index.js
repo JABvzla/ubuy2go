@@ -36,7 +36,7 @@ const styles = theme => ({
         marginLeft: 0,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            maxWidth: '60%',
+            maxWidth: 650,
             margin: 'auto',
         },
     },
