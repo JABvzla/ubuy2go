@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
+import Header from '../components/header';
 import ProductCard from '../components/product-card';
 
 const styles = theme => ({
@@ -17,8 +18,11 @@ class Index extends React.Component {
         const { classes } = this.props;
 
         return (
-            <div className={classes.root}>
-                <ProductCard />
+            <div>
+                <Header />
+                <div className={classes.root}>
+                    <ProductCard />
+                </div>
             </div>
         );
     }
