@@ -7,7 +7,6 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 
-
 const styles = theme => ({
     top: {
         display: 'flex',
@@ -22,7 +21,8 @@ const styles = theme => ({
     sticky: {
         boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14)',
     },
-    text: {
+    title: {
+        fontFamily: 'Pattaya',
         margin: '0 auto',
     },
     search: {
@@ -69,8 +69,8 @@ class PrimarySearchAppBar extends React.PureComponent {
 
         return ([
             <AppBar key={0} position="relative" className={classes.top}>
-                <Typography className={classes.text} variant="display3" color="inherit">
-                    Buy2Go
+                <Typography className={classes.title} variant="display3" color="inherit">
+                    uBuy2Go
                 </Typography>
             </AppBar>,
             <AppBar key={1} position="sticky" classes={{ positionSticky: classes.sticky }}>
