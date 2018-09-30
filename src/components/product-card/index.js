@@ -8,16 +8,17 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
-const styles = {
+const styles = theme => ({
     card: {
         width: 300,
         height: 350,
+        margin: theme.spacing.unit,
     },
     media: {
     },
-};
+});
 
-class ProductCard extends React.Component {
+class ProductCard extends React.PureComponent {
     render() {
         const { classes } = this.props;
 

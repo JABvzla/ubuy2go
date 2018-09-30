@@ -6,14 +6,22 @@ import ProductCard from '../components/product-card';
 
 const styles = theme => ({
     root: {
-        paddingTop: theme.spacing.unit * 20,
+        paddingTop: theme.spacing.unit * 10,
         display: 'flex',
+        flexWrap: 'wrap',
+        alignContent: 'strech',
         justifyContent: 'center',
-        alignContent: 'center',
+        height: '100%',
     },
 });
 
-class Index extends React.Component {
+class Index extends React.PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.products = [...Array(10)];
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -21,7 +29,11 @@ class Index extends React.Component {
             <div>
                 <Header />
                 <div className={classes.root}>
-                    <ProductCard />
+                    {this.products.map((_i, k) => (
+                        <div key={k}>
+                            <ProductCard />
+                        </div>
+                    ))}
                 </div>
             </div>
         );

@@ -57,12 +57,12 @@ const styles = theme => ({
     },
 });
 
-class PrimarySearchAppBar extends React.Component {
+class PrimarySearchAppBar extends React.PureComponent {
     render() {
         const { classes } = this.props;
 
         return (
-            <AppBar position="static" className={classes.root}>
+            <AppBar position="sticky" className={classes.root}>
                 <Typography className={classes.text} variant="display3" color="inherit">
                         Buy2Go
                 </Typography>
