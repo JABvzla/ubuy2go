@@ -1,5 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Actions from '../redux/actions';
 import withRoot from '../withRoot';
 import Header from '../components/header';
 import ProductCard from '../components/product-card';
@@ -19,25 +22,37 @@ class Index extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.products = [...Array(10)];
+        this.props.getProducts();
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, products } = this.props;
 
         return (
             <div>
                 <Header />
                 <div className={classes.root}>
-                    {this.products.map((_i, k) => (
-                        <div key={k}>
-                            <ProductCard />
-                        </div>
-                    ))}
+                    {products.length
+                        ? products.map((_i, k) => (
+                            <div key={k}>
+                                <ProductCard />
+                            </div>
+                        ))
+                        : <CircularProgress />
+                    }
                 </div>
             </div>
         );
     }
 }
 
-export default withRoot(withStyles(styles)(Index));
+const mapStateToProps = state => ({
+    products: state.products,
+});
+
+const mapDispatchToProps = dispatch => ({
+    getProducts: () => dispatch(Actions.getProducts()),
+});
+
+
+export default withRoot(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Index)));
