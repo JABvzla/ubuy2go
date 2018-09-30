@@ -9,12 +9,18 @@ import SearchIcon from '@material-ui/icons/Search';
 
 
 const styles = theme => ({
-    root: {
+    top: {
         display: 'flex',
         width: '100%',
         justifyContent: 'space-between',
         alignItems: 'space-around',
         paddingTop: theme.spacing.unit * 10,
+        root: {
+            border: 'none',
+        },
+    },
+    sticky: {
+        boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14)',
     },
     text: {
         margin: '0 auto',
@@ -61,11 +67,13 @@ class PrimarySearchAppBar extends React.PureComponent {
     render() {
         const { classes } = this.props;
 
-        return (
-            <AppBar position="sticky" className={classes.root}>
+        return ([
+            <AppBar key={0} position="relative" className={classes.top}>
                 <Typography className={classes.text} variant="display3" color="inherit">
-                        Buy2Go
+                    Buy2Go
                 </Typography>
+            </AppBar>,
+            <AppBar key={1} position="sticky" classes={{ positionSticky: classes.sticky }}>
                 <Toolbar>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
@@ -81,8 +89,8 @@ class PrimarySearchAppBar extends React.PureComponent {
                         />
                     </div>
                 </Toolbar>
-            </AppBar>
-        );
+            </AppBar>,
+        ]);
     }
 }
 
