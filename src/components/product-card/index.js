@@ -53,7 +53,7 @@ class ProductCard extends React.PureComponent {
                 <Card className={classes.card}>
                     <CardContent>
                         <Typography gutterBottom variant="headline" align="center">
-                        Product Name
+                            {this.props.title}
                         </Typography>
                         <CardMedia
                             component="img"
@@ -62,10 +62,10 @@ class ProductCard extends React.PureComponent {
                             title="Product"
                         />
                         <Typography component="p" variant="display1" className={classes.price}>
-                        $200
+                            {`$${this.props.price}`}
                         </Typography>
                         <Typography component="p" variant="caption">
-                            Product description product description product description product description
+                            {this.props.description}
                         </Typography>
                         <div className="icon-amazon" />
                     </CardContent>

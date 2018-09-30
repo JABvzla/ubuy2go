@@ -33,9 +33,13 @@ class Index extends React.PureComponent {
                 <Header />
                 <div className={classes.root}>
                     {products.length
-                        ? products.map((_i, k) => (
+                        ? products.map((product, k) => (
                             <div key={k}>
-                                <ProductCard />
+                                <ProductCard
+                                    title={product.title}
+                                    price={product.price}
+                                    description={product.description}
+                                />
                             </div>
                         ))
                         : <CircularProgress />
