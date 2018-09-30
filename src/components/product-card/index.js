@@ -1,20 +1,27 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import SvgIcon from '@material-ui/core/SvgIcon';
 import CardContent from '@material-ui/core/CardContent';
-import IconButton from '@material-ui/core/IconButton';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import './amazonIcon.css';
 
 const styles = theme => ({
-    card: {
-        width: 300,
-        height: 350,
+    root: {
         margin: theme.spacing.unit,
     },
+    card: {
+        width: 300,
+        height: 415,
+        paddingTop: theme.spacing.unit,
+    },
     media: {
+        height: 200,
+    },
+    price: {
+        margin: theme.spacing.unit,
+        marginLeft: 0,
     },
 });
 
@@ -23,36 +30,29 @@ class ProductCard extends React.PureComponent {
         const { classes } = this.props;
 
         return (
-            <Card className={classes.card}>
-                <CardContent>
-                    <Typography gutterBottom variant="headline" component="h2">
-            Product Name
-                    </Typography>
-                    <CardMedia
-                        component="img"
-                        className={classes.media}
-                        image="https://via.placeholder.com/300x300"
-                        title="Product"
-                    />
-                    <Typography component="p">
-            $200
-                    </Typography>
-                    <Typography component="p">
-            Product description product description product description product description
-                    </Typography>
+            <ButtonBase focusRipple className={classes.root}>
+                <Card className={classes.card}>
+                    <CardContent>
+                        <Typography gutterBottom variant="headline" align="center">
+                        Product Name
+                        </Typography>
+                        <CardMedia
+                            component="img"
+                            className={classes.media}
+                            image="https://via.placeholder.com/300x300"
+                            title="Product"
+                        />
+                        <Typography component="p" variant="display1" className={classes.price}>
+                        $200
+                        </Typography>
+                        <Typography component="p" variant="caption">
+                            Product description product description product description product description
+                        </Typography>
+                        <div className="icon-amazon" />
+                    </CardContent>
+                </Card>
 
-                    <BottomNavigationAction
-                        label="Recents"
-                        icon={(
-                            <IconButton aria-label="Delete">
-                                <SvgIcon>
-                                    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
-                                </SvgIcon>
-                            </IconButton>
-                        )}
-                    />
-                </CardContent>
-            </Card>
+            </ButtonBase>
         );
     }
 }
