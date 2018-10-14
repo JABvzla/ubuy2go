@@ -56,6 +56,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     getProducts: () => dispatch(Actions.getProducts()),
+    logout: () => Actions.logout(),
 });
 
 
