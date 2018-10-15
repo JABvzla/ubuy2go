@@ -15,7 +15,7 @@ function addProduct() {
 }
 
 function login(email, password) {
-    firebaseApp.auth().signInWithEmailAndPassword(email, password);
+    return firebaseApp.auth().signInWithEmailAndPassword(email, password);
 }
 
 function logout() {

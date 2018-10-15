@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 
 const initialState = {
     products: [],
-    isAdmin: false,
+    isAdmin: undefined,
 };
 
 function products(state = initialState, action) {
