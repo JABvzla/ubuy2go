@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import DoneIcon from '@material-ui/icons/Done';
+import DoneIcon from '@material-ui/icons/CheckCircleOutline';
 import Actions from '../redux/actions';
 import withRoot from '../withRoot';
 

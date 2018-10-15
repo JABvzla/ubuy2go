@@ -43,11 +43,16 @@ function getProducts() {
     };
 }
 
+function toggleProductModal() {
+    return dispatch => dispatch({ type: 'PRODUCT_MODAL_TOGGLE' });
+}
+
 const Actions = {
     addProduct,
     getProducts,
     login,
     logout,
+    toggleProductModal,
 };
 
 export default Actions;

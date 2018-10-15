@@ -23,6 +23,8 @@ class Index extends React.PureComponent {
         super(props);
 
         this.props.getProducts();
+        this.logout = this.props.logout.bind(this);
+        this.openProductModal = this.props.openProductModal.bind(this);
     }
 
     render() {
@@ -30,7 +32,11 @@ class Index extends React.PureComponent {
 
         return (
             <div>
-                <Header />
+                <Header
+                    logout={this.logout}
+                    openProductModal={this.openProductModal}
+                    isAdmin={this.props.isAdmin}
+                />
                 <div className={classes.root}>
                     {products.length
                         ? products.map((product, k) => (
@@ -51,10 +57,13 @@ class Index extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
+    isAdmin: state.isAdmin,
     products: state.products,
+    productModalOpen: state.productModalOpen,
 });
 
 const mapDispatchToProps = dispatch => ({
+    openProductModal: () => dispatch(Actions.toggleProductModal()),
     getProducts: () => dispatch(Actions.getProducts()),
     logout: () => Actions.logout(),
 });

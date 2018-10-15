@@ -3,11 +3,16 @@ import thunk from 'redux-thunk';
 
 const initialState = {
     products: [],
-    isAdmin: undefined,
+    isAdmin: false,
+    productModalOpen: false,
 };
 
 function products(state = initialState, action) {
     switch (action.type) {
+    case 'PRODUCT_MODAL_TOGGLE':
+        return Object.assign({}, state, {
+            productModalOpen: !state.productModalOpen,
+        });
     case 'SET_ADMIN':
         return Object.assign({}, state, {
             isAdmin: action.payload.isAdmin,

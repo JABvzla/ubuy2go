@@ -6,6 +6,9 @@ import Input from '@material-ui/core/Input';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
+import ExitToApp from '@material-ui/icons/ExitToApp';
+import IconButton from '@material-ui/core/IconButton';
 
 const styles = theme => ({
     top: {
@@ -61,9 +64,35 @@ const styles = theme => ({
         transition: theme.transitions.create('width'),
         width: '100%',
     },
+    adminIcon: {
+        color: '#fff',
+    },
 });
 
 class PrimarySearchAppBar extends React.PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.logout = this.props.logout.bind(this);
+        this.openProductModal = this.props.openProductModal.bind(this);
+    }
+
+    adminOptions() {
+        if (this.props.isAdmin) {
+            const { classes } = this.props;
+
+            return ([
+                <IconButton key={0} className={classes.adminIcon} onClick={this.openProductModal}>
+                    <AddShoppingCart />
+                </IconButton>,
+                <IconButton key={1} className={classes.adminIcon} onClick={this.logout}>
+                    <ExitToApp />
+                </IconButton>,
+            ]);
+        }
+        return null;
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -88,6 +117,7 @@ class PrimarySearchAppBar extends React.PureComponent {
                             }}
                         />
                     </div>
+                    {this.adminOptions()}
                 </Toolbar>
             </AppBar>,
         ]);
