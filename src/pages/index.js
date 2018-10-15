@@ -6,6 +6,7 @@ import Actions from '../redux/actions';
 import withRoot from '../withRoot';
 import Header from '../components/header';
 import ProductCard from '../components/product-card';
+import ProductForm from '../components/product-form';
 
 const styles = theme => ({
     root: {
@@ -45,12 +46,14 @@ class Index extends React.PureComponent {
                                     title={product.title}
                                     price={product.price}
                                     description={product.description}
+                                    link={product.link}
                                 />
                             </div>
                         ))
                         : <CircularProgress />
                     }
                 </div>
+                <ProductForm />
             </div>
         );
     }

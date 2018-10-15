@@ -38,7 +38,7 @@ class ProductCard extends React.PureComponent {
     }
 
     navigate() {
-        window.open('https://google.com', '_blank');
+        window.open(this.props.link ? this.props.link : 'https://google.com', '_blank');
     }
 
     render() {

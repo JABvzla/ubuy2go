@@ -5,14 +5,16 @@ const initialState = {
     products: [],
     isAdmin: false,
     productModalOpen: false,
+    productModal: {
+        title: '',
+        price: '',
+        description: '',
+        link: '',
+    },
 };
 
 function products(state = initialState, action) {
     switch (action.type) {
-    case 'PRODUCT_MODAL_TOGGLE':
-        return Object.assign({}, state, {
-            productModalOpen: !state.productModalOpen,
-        });
     case 'SET_ADMIN':
         return Object.assign({}, state, {
             isAdmin: action.payload.isAdmin,
@@ -20,6 +22,16 @@ function products(state = initialState, action) {
     case 'SET_PRODUCTS':
         return Object.assign({}, state, {
             products: action.payload.products,
+        });
+    case 'PRODUCT_MODAL_TOGGLE':
+        return Object.assign({}, state, {
+            productModalOpen: !state.productModalOpen,
+        });
+    case 'PRODUCT_MODAL_SET':
+        return Object.assign({}, state, {
+            productModal: {
+                ...state.productModal,
+                [action.payload.key]: action.payload.value },
         });
     default:
         return state;

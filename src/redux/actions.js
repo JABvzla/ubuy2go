@@ -6,12 +6,12 @@ require('firebase/auth');
 const productsRef = database.ref('products');
 
 function addProduct() {
-    const newPostRef = productsRef.push();
-    newPostRef.set({
-        title: 'Producto ',
-        description: 'description',
-        price: 200,
-    });
+    const state = store.getState();
+
+    return async () => {
+        const newPostRef = productsRef.push();
+        newPostRef.set({ ...state.productModal });
+    };
 }
 
 function login(email, password) {
@@ -47,12 +47,25 @@ function toggleProductModal() {
     return dispatch => dispatch({ type: 'PRODUCT_MODAL_TOGGLE' });
 }
 
+
+function setProductModal(key, value) {
+    return dispatch => dispatch({
+        type: 'PRODUCT_MODAL_SET',
+        payload: {
+            key,
+            value,
+        },
+    });
+}
+
+
 const Actions = {
     addProduct,
     getProducts,
     login,
     logout,
     toggleProductModal,
+    setProductModal,
 };
 
 export default Actions;
