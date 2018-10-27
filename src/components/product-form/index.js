@@ -67,6 +67,14 @@ class ProductForm extends React.PureComponent {
                                 value={productModal.title}
                             />
                             <TextField
+                                label="Image"
+                                fullWidth
+                                margin="normal"
+                                variant="outlined"
+                                onChange={this.onTextChange('image')}
+                                value={productModal.image}
+                            />
+                            <TextField
                                 label="Price"
                                 fullWidth
                                 margin="normal"
@@ -99,6 +107,7 @@ class ProductForm extends React.PureComponent {
                         <CardContent>
                             <ProductCard
                                 title={productModal.title}
+                                image={productModal.image}
                                 price={productModal.price}
                                 description={productModal.description}
                                 link={productModal.link}

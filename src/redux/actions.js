@@ -32,7 +32,7 @@ function getProducts() {
     return async (dispatch) => {
         await productsRef.once('value').then((snapshot) => {
             const products = [];
-            snapshot.forEach((value) => { products.push(value.val()); });
+            snapshot.forEach((value) => { products.push({ key: value.ref.path.pieces_[1], ...value.val() }); });
             dispatch({
                 type: 'SET_PRODUCTS',
                 payload: {
@@ -41,6 +41,11 @@ function getProducts() {
             });
         });
     };
+}
+
+function removeProduct(child) {
+    productsRef.child(child).remove();
+    return getProducts();
 }
 
 function toggleProductModal() {
@@ -61,6 +66,7 @@ function setProductModal(key, value) {
 
 const Actions = {
     addProduct,
+    removeProduct,
     getProducts,
     login,
     logout,

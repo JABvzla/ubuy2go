@@ -13,7 +13,7 @@ const styles = theme => ({
         paddingTop: theme.spacing.unit * 10,
         display: 'flex',
         flexWrap: 'wrap',
-        alignContent: 'strech',
+        alignContent: 'stretch',
         justifyContent: 'center',
         height: '100%',
     },
@@ -43,10 +43,14 @@ class Index extends React.PureComponent {
                         ? products.map((product, k) => (
                             <div key={k}>
                                 <ProductCard
+                                    key={product.key}
                                     title={product.title}
+                                    image={product.image}
                                     price={product.price}
                                     description={product.description}
                                     link={product.link}
+                                    isAdmin={this.props.isAdmin}
+                                    onDeleteClick={() => this.props.removeProduct(product.key)}
                                 />
                             </div>
                         ))
@@ -67,6 +71,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     openProductModal: () => dispatch(Actions.toggleProductModal()),
+    removeProduct: key => dispatch(Actions.removeProduct(key)),
     getProducts: () => dispatch(Actions.getProducts()),
     logout: () => Actions.logout(),
 });
