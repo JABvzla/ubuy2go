@@ -5,15 +5,6 @@ require('firebase/auth');
 
 const productsRef = database.ref('products');
 
-function addProduct() {
-    const state = store.getState();
-
-    return async () => {
-        const newPostRef = productsRef.push();
-        newPostRef.set({ ...state.productModal });
-    };
-}
-
 function login(email, password) {
     return firebaseApp.auth().signInWithEmailAndPassword(email, password);
 }
@@ -43,9 +34,28 @@ function getProducts() {
     };
 }
 
+function addProduct() {
+    productsRef.push().set({ ...store.getState().productModal, key: null });
+}
+
+function updateProduct() {
+    const state = store.getState();
+    productsRef
+        .child(state.productModal.key)
+        .update({ ...state.productModal, key: null });
+}
+
+function saveProduct() {
+    return async () => {
+        if (store.getState().productModal.key) {
+            return updateProduct();
+        }
+        return addProduct();
+    };
+}
+
 function removeProduct(child) {
-    productsRef.child(child).remove();
-    return getProducts();
+    return async () => productsRef.child(child).remove();
 }
 
 function toggleProductModal() {
@@ -65,7 +75,7 @@ function setProductModal(key, value) {
 
 
 const Actions = {
-    addProduct,
+    saveProduct,
     removeProduct,
     getProducts,
     login,

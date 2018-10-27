@@ -6,7 +6,9 @@ const initialState = {
     isAdmin: false,
     productModalOpen: false,
     productModal: {
+        key: '',
         title: '',
+        image: '',
         price: '',
         description: '',
         link: '',

@@ -24,7 +24,7 @@ const styles = theme => ({
         padding: '8px',
         paddingTop: '30px',
         width: '600px',
-        height: '500px',
+        height: '550px',
         display: 'flex',
         justifyContent: 'space-between',
         alignContent: 'center',
@@ -129,7 +129,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     setProductModal: (key, value) => dispatch(Actions.setProductModal(key, value)),
-    saveProduct: () => dispatch(Actions.addProduct()),
+    saveProduct: () => dispatch(Actions.saveProduct()),
     closeProductModal: () => dispatch(Actions.toggleProductModal()),
 });
 

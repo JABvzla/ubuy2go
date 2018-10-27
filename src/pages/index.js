@@ -25,7 +25,27 @@ class Index extends React.PureComponent {
 
         this.props.getProducts();
         this.logout = this.props.logout.bind(this);
-        this.openProductModal = this.props.openProductModal.bind(this);
+        this.openNewProductModal = this.openNewProductModal.bind(this);
+    }
+
+    openNewProductModal() {
+        this.props.setProductModal('key', '');
+        this.props.setProductModal('title', '');
+        this.props.setProductModal('image', '');
+        this.props.setProductModal('price', '');
+        this.props.setProductModal('description', '');
+        this.props.setProductModal('link', '');
+        this.props.openProductModal();
+    }
+
+    selectProduct(product) {
+        this.props.setProductModal('key', product.key);
+        this.props.setProductModal('title', product.title);
+        this.props.setProductModal('image', product.image);
+        this.props.setProductModal('price', product.price);
+        this.props.setProductModal('description', product.description);
+        this.props.setProductModal('link', product.link);
+        this.props.openProductModal();
     }
 
     render() {
@@ -35,7 +55,7 @@ class Index extends React.PureComponent {
             <div>
                 <Header
                     logout={this.logout}
-                    openProductModal={this.openProductModal}
+                    openProductModal={this.openNewProductModal}
                     isAdmin={this.props.isAdmin}
                 />
                 <div className={classes.root}>
@@ -50,6 +70,7 @@ class Index extends React.PureComponent {
                                     description={product.description}
                                     link={product.link}
                                     isAdmin={this.props.isAdmin}
+                                    onUpdateClick={() => this.selectProduct(product)}
                                     onDeleteClick={() => this.props.removeProduct(product.key)}
                                 />
                             </div>
@@ -71,6 +92,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     openProductModal: () => dispatch(Actions.toggleProductModal()),
+    setProductModal: (key, value) => dispatch(Actions.setProductModal(key, value)),
     removeProduct: key => dispatch(Actions.removeProduct(key)),
     getProducts: () => dispatch(Actions.getProducts()),
     logout: () => Actions.logout(),

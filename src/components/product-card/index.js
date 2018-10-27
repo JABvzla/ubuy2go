@@ -74,6 +74,7 @@ class ProductCard extends React.PureComponent {
                         <CardContent>
                             <Typography gutterBottom variant="headline" align="center">
                                 {this.props.title}
+                                {this.props.key}
                             </Typography>
 
                             <CardMedia
