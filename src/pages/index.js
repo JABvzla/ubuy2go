@@ -28,6 +28,12 @@ class Index extends React.PureComponent {
         this.openNewProductModal = this.openNewProductModal.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.productProcessing && !nextProps.productProcessing) {
+            this.props.getProducts();
+        }
+    }
+
     openNewProductModal() {
         this.props.setProductModal('key', '');
         this.props.setProductModal('title', '');
@@ -88,6 +94,7 @@ const mapStateToProps = state => ({
     isAdmin: state.isAdmin,
     products: state.products,
     productModalOpen: state.productModalOpen,
+    productProcessing: state.productProcessing,
 });
 
 const mapDispatchToProps = dispatch => ({

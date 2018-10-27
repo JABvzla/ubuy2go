@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 const initialState = {
     products: [],
     isAdmin: false,
+    productProcessing: false,
     productModalOpen: false,
     productModal: {
         key: '',
@@ -24,6 +25,15 @@ function products(state = initialState, action) {
     case 'SET_PRODUCTS':
         return Object.assign({}, state, {
             products: action.payload.products,
+        });
+    case 'PRODUCT_PROCESSING':
+        return Object.assign({}, state, {
+            productProcessing: true,
+        });
+    case 'PRODUCT_SUCCESS':
+        return Object.assign({}, state, {
+            productProcessing: false,
+            productModalOpen: false,
         });
     case 'PRODUCT_MODAL_TOGGLE':
         return Object.assign({}, state, {

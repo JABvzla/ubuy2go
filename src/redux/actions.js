@@ -21,6 +21,12 @@ firebaseApp.auth().onAuthStateChanged(user => store.dispatch({
 
 function getProducts() {
     return async (dispatch) => {
+        dispatch({
+            type: 'SET_PRODUCTS',
+            payload: {
+                products: [],
+            },
+        });
         await productsRef.once('value').then((snapshot) => {
             const products = [];
             snapshot.forEach((value) => { products.push({ key: value.ref.path.pieces_[1], ...value.val() }); });
@@ -35,27 +41,41 @@ function getProducts() {
 }
 
 function addProduct() {
-    productsRef.push().set({ ...store.getState().productModal, key: null });
+    return productsRef.push().set({ ...store.getState().productModal, key: null });
 }
 
 function updateProduct() {
     const state = store.getState();
-    productsRef
+    return productsRef
         .child(state.productModal.key)
         .update({ ...state.productModal, key: null });
 }
 
 function saveProduct() {
-    return async () => {
+    return async (dispatch) => {
+        if (store.getState().productProcessing) return;
+
+        dispatch({ type: 'PRODUCT_PROCESSING' });
+
         if (store.getState().productModal.key) {
-            return updateProduct();
+            return updateProduct().then(() => {
+                dispatch({ type: 'PRODUCT_SUCCESS' });
+            });
         }
-        return addProduct();
+        return addProduct().then(() => {
+            dispatch({ type: 'PRODUCT_SUCCESS' });
+        });
     };
 }
 
 function removeProduct(child) {
-    return async () => productsRef.child(child).remove();
+    return async (dispatch) => {
+        if (store.getState().productProcessing) return;
+        dispatch({ type: 'PRODUCT_PROCESSING' });
+        return productsRef.child(child).remove().then(() => {
+            dispatch({ type: 'PRODUCT_SUCCESS' });
+        });
+    };
 }
 
 function toggleProductModal() {
