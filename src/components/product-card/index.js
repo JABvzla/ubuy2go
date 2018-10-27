@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -9,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import UpdateIcon from '@material-ui/icons/Edit';
-
 import './amazonIcon.css';
 
 const styles = theme => ({
@@ -20,10 +18,6 @@ const styles = theme => ({
         width: 300,
         height: 415,
         paddingTop: theme.spacing.unit,
-        transition: 'background-color 0.5s ease',
-        '&:hover': {
-            backgroundColor: fade(theme.palette.common.black, 0.01),
-        },
     },
     actions: {
         justifyContent: 'flex-end',
@@ -49,11 +43,21 @@ const styles = theme => ({
     },
 });
 
+const defaultImage = 'http://via.placeholder.com/300';
+
 class ProductCard extends React.PureComponent {
     constructor(props) {
         super(props);
 
+        this.state = {
+            image: props.image ? props.image : defaultImage,
+        }
+
         this.navigate = this.navigate.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ image: nextProps.image ? nextProps.image : defaultImage });
     }
 
     navigate() {
@@ -80,7 +84,10 @@ class ProductCard extends React.PureComponent {
                             <CardMedia
                                 component="img"
                                 className={classes.media}
-                                image={this.props.image}
+                                image={this.state.image}
+                                onError={() => {
+                                    this.setState({ image: defaultImage });
+                                }}
                                 title="Product"
                             />
 
