@@ -51,7 +51,7 @@ class ProductCard extends React.PureComponent {
 
         this.state = {
             image: props.image ? props.image : defaultImage,
-        }
+        };
 
         this.navigate = this.navigate.bind(this);
     }
