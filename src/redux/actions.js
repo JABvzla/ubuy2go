@@ -82,7 +82,6 @@ function toggleProductModal() {
     return dispatch => dispatch({ type: 'PRODUCT_MODAL_TOGGLE' });
 }
 
-
 function setProductModal(key, value) {
     return dispatch => dispatch({
         type: 'PRODUCT_MODAL_SET',
@@ -92,7 +91,6 @@ function setProductModal(key, value) {
         },
     });
 }
-
 
 const Actions = {
     saveProduct,

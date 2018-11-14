@@ -105,5 +105,4 @@ const mapDispatchToProps = dispatch => ({
     logout: () => Actions.logout(),
 });
 
-
 export default withRoot(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Index)));

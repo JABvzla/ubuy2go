@@ -12,7 +12,6 @@ import withRoot from '../../withRoot';
 import ProductCard from '../product-card';
 import Actions from '../../redux/actions';
 
-
 const styles = theme => ({
     root: {
         padding: theme.spacing.unit * 5,
@@ -119,7 +118,6 @@ class ProductForm extends React.PureComponent {
         );
     }
 }
-
 
 const mapStateToProps = state => ({
     isAdmin: state.isAdmin,
