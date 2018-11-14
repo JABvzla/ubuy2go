@@ -138,7 +138,6 @@ class Admin extends React.PureComponent {
     }
 }
 
-
 const mapStateToProps = state => ({
     isAdmin: state.isAdmin,
 });
@@ -146,6 +145,5 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = () => ({
     login: (email, password) => Actions.login(email, password),
 });
-
 
 export default withRoot(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Admin)));
