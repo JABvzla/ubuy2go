@@ -35,5 +35,10 @@
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-require-jsdoc": "^1.0.4",
     "firebase-tools": "^4.2.1"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
